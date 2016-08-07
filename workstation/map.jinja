@@ -1,0 +1,31 @@
+{% set workstation = salt['pillar.get']('workstation', {
+    'lookup': salt['grains.filter_by']({
+        'Debian': {
+        },
+        'RedHat': {
+        },
+    }, default='Debian' ),
+    'git': {
+        'config': {
+            'alias': {
+                'br': 'branch',
+                'st': 'status',
+                'co': 'checkout',
+                'lg': 'log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd, %C(bold green)%cr%Creset) %C(bold blue)<%an>%Creset" --abbrev-commit --date=local',
+                'pullff': 'pull --ff-only'
+            },
+            'color': {
+                'ui': 'always'
+            }.
+            'log': {
+                'decorate': 'full'
+            },
+            'branch': {
+                'autosetuprebase': 'always'
+            },
+            'merge': {
+                'conflictstyle': 'diff3'
+            },
+        },
+    },
+}, merge=True) %}
