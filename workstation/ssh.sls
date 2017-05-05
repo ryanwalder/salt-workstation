@@ -1,7 +1,7 @@
 {% from "workstation/map.jinja" import workstation with context %}
 
 # Set some common variables
-{% set user = workstation.get('username') %}
+{% set user = workstation.get('user') %}
 {% set home = '/home/' + user %}
 
 ssh-packages:
@@ -14,10 +14,3 @@ ssh-dir:
     - name: {{ home }}/.ssh
     - user: {{ user }}
     - mode: 700
-
-ssh-config:
-  file.managed:
-    - name: {{ home }}/.ssh
-    - source: salt://workstation/files/ssh.config
-    - user: {{ user }}
-    - mode: 600

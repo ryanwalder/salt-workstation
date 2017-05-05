@@ -1,9 +1,7 @@
 include:
   - workstation.packages.i3
-  - workstation.packages.lightdm
   - workstation.packages.spotify
-  - workstation.packages.weechat
-#  - workstation.packages.vagrant
+  - workstation.packages.vagrant
 
 workstation-packages:
   pkg.latest:
@@ -26,6 +24,7 @@ workstation-packages:
       - python-software-properties
       - rsync
       - screen
+      - ssh
       - suckless-tools
       - sudo
       - thunar
@@ -34,10 +33,6 @@ workstation-packages:
       - tumbler
       - vim
       - w3m
-      - weechat
-      - weechat-curses
-      - weechat-plugins
-      - weechat-scripts
       - xclip
       - xfonts-terminus
     - refresh: True

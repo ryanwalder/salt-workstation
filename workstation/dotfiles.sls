@@ -3,52 +3,39 @@
 {%- set user = workstation.get('user') %}
 {%- set home = workstation.get('home') %}
 
+dotfiles-parent-dir:
+  file.directory:
+    - name: {{ home }}/.config
+    - user: {{ user }}
+
 dotfiles:
   git.latest:
     - name: https://github.com/ryanwalder/dotfiles.git
-    - target: {{ home }}/.dotfiles
+    - target: {{ home }}/.config/dotfiles
     - user: {{ user }}
-
-# Setup directories, will create preceding dirs if needed
-{% for dir, mode in {
-  ".gconf/apps/gnome-terminal/profiles/Default": "755",
-  ".fonts": "755",
-  ".mcabber": "755",
-  ".i3": "755",
-  ".config/gtk-3.0": "755"
-}.items() %}
-
-dotfiles-dir-{{ dir }}:
-  file.directory:
-    - name: {{ home }}/{{ dir }}
-    - mode: {{ mode }}
-    - makedirs: True
-    - require:
-      - git: dotfiles
-{% endfor %}
+    - force_clone: True
+    - force_reset: True
 
 # Loopover config files and symlink, will force overwrite
 {% for source, target in {
-  ".dotfiles/bash/bashrc": ".bashrc",
-  ".dotfiles/bash/bash_aliases": ".bashrc_aliases",
-  ".dotfiles/bash/bash_logout": ".bash_logout",
-  ".dotfiles/bash/bash_profile": ".bash_profile",
-  ".dotfiles/bash/bash_prompt": ".bash_prompt",
-  ".dotfiles/terminal/gnomedefault.xml": ".gconf/apps/gnome-terminal/profiles/Default/%gconf.xml",
-  ".dotfiles/fonts/fonts.conf": ".fonts.conf",
-  ".dotfiles/fonts/PowerlineSymbols.otf": ".fonts/PowerlineSymbols.otf",
-  ".dotfiles/i3/config": ".i3/config",
-  ".dotfiles/i3/conky-i3bar": ".i3/conky-i3bar",
-  ".dotfiles/i3/conkyrc": ".i3/conkyrc",
-  ".dotfiles/gtk/gtk2": ".gtkrc-2.0",
-  ".dotfiles/gtk/gtk3": ".config/gtk-3.0/settings.ini"
+  ".config/dotfiles/bash/bashrc": ".bashrc",
+  ".config/dotfiles/bash/bash_aliases": ".bashrc_aliases",
+  ".config/dotfiles/bash/bash_logout": ".bash_logout",
+  ".config/dotfiles/bash/bash_profile": ".bash_profile",
+  ".config/dotfiles/bash/bash_prompt": ".bash_prompt",
+  ".config/dotfiles/fonts/fonts.conf": ".config/fontconfig/fonts.conf",
+  ".config/dotfiles/i3/config": ".i3/config",
+  ".config/dotfiles/gtk/gtk2": ".gtkrc-2.0",
+  ".config/dotfiles/gtk/gtk3": ".config/gtk-3.0/settings.ini"
 }.items() %}
 
-symlink-{{ target }}:
+symlink-{{ target|replace('/', '-') }}:
   file.symlink:
-    - name: {{ home }}/{{ source }}
-    - target: {{ home }}/{{ target }}
+    - name: {{ home }}/{{ target }}
+    - target: {{ home }}/{{ source }}
     - force: True
+    - makedirs: True
+    - user: {{ user }}
     - require:
       - git: dotfiles
 {% endfor %}

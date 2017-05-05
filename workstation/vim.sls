@@ -1,21 +1,10 @@
 {%- from 'workstation/map.jinja' import workstation with context %}
 
+include:
+  - workstation.dotfiles
+
 {%- set user = workstation.get('user') %}
 {%- set home = workstation.get('home') %}
-
-vim-dir:
-  file.directory:
-    - name: {{ home }}/.vim
-    - user: {{ user }}
-    - require:
-      - sls: workstation.dotfiles{{ home }}ryan-vimrc:
-  file.symlink:
-    - name: {{ home }}/.vimrc
-    - target: {{ home }}/.dotfiles/vim/vimrc
-    - require:
-      - sls: workstation.dotfiles
-    - require_in:
-      - cmd: vim-pathogen
 
 {% for dir in ['bundle', 'autoload', '.swap', '.tmp', '.undo'] %}
 vim-confdir-{{ dir }}:
@@ -23,19 +12,27 @@ vim-confdir-{{ dir }}:
     - name: {{ home }}/.vim/{{ dir }}
     - user: {{ user }}
     - mode: 755
+    - makedirs: True
     - require:
       - sls: workstation.dotfiles
-    - require_in:
-      - cmd: vim-pathogen
 {% endfor %}
 
-# Have to use cmd.run to wget the file as salt is erroring out on file.managed
 vim-pathogen:
-  cmd.run:
-    - name: curl -LSso {{ home }}/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+  git.latest:
+    - name: https://github.com/tpope/vim-pathogen
+    - target: {{ home }}/.vim/pathogen
+    - user: {{ user }}
+    - force_clone: True
+    - force_reset: True
+    - require:
+      - file: vim-confdir-bundle
+  file.symlink:
+    - name: {{ home }}/.vim/autoload/pathogen.vim
+    - target: {{ home }}/.vim/pathogen/autoload/pathogen.vim
     - user: {{ user }}
     - require:
-      - sls: workstation.dotfiles
+      - file: vim-confdir-bundle
+      - git: vim-pathogen
 
 {% for repo, folder in {
   "https://github.com/godlygeek/tabular.git": "tabular",
@@ -55,9 +52,20 @@ workstation-users-ryan-vim-{{ repo }}:
   git.latest:
     - name: {{ repo }}
     - target: {{ home }}/.vim/bundle/{{ folder }}
-    - user: {{ home }}
-    - force: True
+    - user: {{ user }}
+    - branch: master
+    - force_clone: True
+    - force_reset: True
     - require:
       - sls: workstation.dotfiles
-      - cmd: vim-pathogen
+      - file: vim-pathogen
 {% endfor %}
+
+vim-symlink:
+  file.symlink:
+    - name: {{ home }}/.vimrc
+    - target: {{ home }}/.config/dotfiles/vim/vimrc
+    - require:
+      - sls: workstation.dotfiles
+    - require_in:
+      - file: vim-pathogen
