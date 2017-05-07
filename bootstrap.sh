@@ -28,24 +28,16 @@ pillar_roots:
     - /srv/pillar
 EOF
 
-read -r -d '' pillar <<"EOF"
-workstation:
-  username: ryan
-  home: /home/ryan
-  fullname: Ryan Walder
-  email: ryan.walder@gmail.com
-EOF
-
 apt-get install -y curl git-core python-git
 
 mkdir -p /srv/salt /srv/pillar
 
 curl -L https://bootstrap.saltstack.com | sh
 
-ln -s $(pwd)/workstation /srv/salt/workstation
+ln -s $(pwd)/workstation /srv/salt/workstation/
 cp $(pwd)/top.sls /srv/salt/top.sls
 cp $(pwd)/top.sls /srv/pillar/top.sls
-echo "$pillar" > /srv/pillar/workstation.sls
+cp $(pwd)/pillar.sls /srv/pillar/workstation.sls
 echo "$salt_config" > /etc/salt/minion
 
 systemctl restart salt-minion
