@@ -1,5 +1,4 @@
 include:
-  - workstation.packages.spotify
   - workstation.packages.vagrant
 
 workstation-packages:

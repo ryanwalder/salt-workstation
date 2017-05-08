@@ -19,6 +19,9 @@ dotfiles:
 # Loopover config files and symlink, will force overwrite
 {% for source, target in {
   ".config/dotfiles/bash/bashrc": ".bashrc",
+  ".config/dotfiles/bash/inputrc": ".inputrc",
+  ".config/dotfiles/terminal/Xresources": ".Xresources",
+  ".config/dotfiles/git/gitconfig": ".gitconfig",
   ".config/dotfiles/fonts/fonts.conf": ".config/fontconfig/fonts.conf",
   ".config/dotfiles/i3/config": ".i3/config",
   ".config/dotfiles/gtk/gtk2": ".gtkrc-2.0",

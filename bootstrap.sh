@@ -34,7 +34,6 @@ mkdir -p /srv/salt /srv/pillar
 
 curl -L https://bootstrap.saltstack.com | sh
 
-ln -s $(pwd)/workstation /srv/salt/workstation/
 cp $(pwd)/top.sls /srv/salt/top.sls
 cp $(pwd)/top.sls /srv/pillar/top.sls
 cp $(pwd)/pillar.sls /srv/pillar/workstation.sls
