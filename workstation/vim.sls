@@ -46,6 +46,7 @@ workstation-vim-pathogen:
   "https://github.com/ekalinin/Dockerfile.vim.git",
   "https://github.com/plasticboy/vim-markdown.git",
   "https://github.com/markcornick/vim-terraform.git",
+  "https://github.com/martinda/Jenkinsfile-vim-syntax",
 ] %}
 
 workstation-vim-plugin-{{ repo.split('/')[-1]|replace('.git', '') }}:
