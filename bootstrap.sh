@@ -8,16 +8,8 @@ fi
 read -r -d '' salt_config <<"EOF"
 file_client: local
 
-gitfs_provider: gitpython
-
 fileserver_backend:
   - roots
-  - git
-
-gitfs_remotes:
-  - https://github.com/ryanwalder/salt-workstation.git
-  - https://github.com/ryanwalder/lightdm-formula.git
-  - https://github.com/ryanwalder/i3wm-formula.git
 
 file_roots:
   base:
@@ -28,17 +20,18 @@ pillar_roots:
     - /srv/pillar
 EOF
 
-apt-get install -y curl git-core python-git
+apt-get install -y curl
 
 mkdir -p /srv/salt /srv/pillar
 
-curl -L https://bootstrap.saltstack.com | sh
+#curl -L https://bootstrap.saltstack.com | sh
 
+cp -r $(pwd)/workstation /srv/salt
 cp $(pwd)/top.sls /srv/salt/top.sls
 cp $(pwd)/top.sls /srv/pillar/top.sls
 cp $(pwd)/pillar.sls /srv/pillar/workstation.sls
 echo "$salt_config" > /etc/salt/minion
 
-systemctl restart salt-minion
+#systemctl restart salt-minion
 
-salt-call state.highstate --log-level info --local
+salt-call state.highstate --log-level debug --local
