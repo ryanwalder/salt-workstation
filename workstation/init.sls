@@ -1,6 +1,5 @@
 include:
-  - i3wm
-  - lightdm
+  - workstation.i3
   - workstation.dotfiles
   - workstation.vim
   - workstation.packages

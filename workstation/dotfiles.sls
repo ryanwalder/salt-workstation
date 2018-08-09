@@ -13,8 +13,8 @@ dotfiles:
     - name: https://github.com/ryanwalder/dotfiles.git
     - target: {{ home }}/.config/dotfiles
     - user: {{ user }}
-    - force_clone: True
-    - force_reset: True
+    - force_clone: False
+    - force_reset: False
 
 # Loopover config files and symlink, will force overwrite
 {% for source, target in {
@@ -25,7 +25,14 @@ dotfiles:
   ".config/dotfiles/fonts/fonts.conf": ".config/fontconfig/fonts.conf",
   ".config/dotfiles/i3/config": ".i3/config",
   ".config/dotfiles/gtk/gtk2": ".gtkrc-2.0",
-  ".config/dotfiles/gtk/gtk3": ".config/gtk-3.0/settings.ini"
+  ".config/dotfiles/gtk/gtk3": ".config/gtk-3.0/settings.ini",
+  ".config/dotfiles/bin/monitors": "bin/monitors",
+  ".config/dotfiles/bin/vpn": "bin/vpn",
+  ".config/dotfiles/bin/powerctl": "bin/powerctl",
+  ".config/dotfiles/bin/wallpaper": "bin/wallpaper",
+  ".config/dotfiles/bin/monitors": "bin/monitors",
+  ".config/dotfiles/dunst/dunstrc": ".config/dunst/dunstrc",
+  ".config/dotfiles/compton/compton.conf": ".config/compton.conf",
 }.items() %}
 
 dotfiles-symlink-{{ target|replace('/', '-') }}:

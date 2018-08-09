@@ -5,6 +5,6 @@
 
 cron-wallpaper:
   cron.present:
-    - name: 'DISPLAY=:0.0 feh --bg-max "$(find ~/wallpapers/|shuf -n1)"'
+    - name: '~/bin/wallpaper'
     - user: {{ user }}
     - minute: '*/10'

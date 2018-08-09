@@ -1,0 +1,22 @@
+{% set lightdm = salt['pillar.get']('lightdm', {
+  'lookup': salt['grains.filter_by']({
+    'Debian': {
+      'packages': ['lightdm', 'lightdm-gtk-greeter'],
+    },
+  }, default='Debian', grain='os_family'),
+  'lightdm_config': {
+    'allow-guest': False,
+    'greeter-hide-users': True,
+    'greeter-show-manual-login': True,
+    'greeter-session': 'lightdm-gtk-greeter',
+  },
+  'gtk_config': {
+    'show-language-selector': True,
+    'background': '#000000',
+    'xft-antialias': False,
+    'show-clock': True,
+    'indicators': '~host;~spacer;~clock;~session;~power',
+  },
+}, merge=True)
+
+%}

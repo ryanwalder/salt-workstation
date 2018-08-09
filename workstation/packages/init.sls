@@ -5,22 +5,39 @@ workstation-packages:
   pkg.latest:
     - pkgs:
       - alsa-utils
+      - autorandr
+      - bridge-utils
+      - build-essential
       - chromium-browser
+      - curl
       - feh
       - firefox
       - flashplugin-installer
-      - glances
+      - gcc
+      - gnome-keyring
+      - gnome-terminal
       - gthumb
       - haveged
       - htop
+      - jq
       - libreoffice
+      - lxc
+      - lxd
       - mtr
+      - net-tools
       - nmap
+      - pinta
+      - playerctl
       - python
+      - python-dev
       - python-pip
-      - python-software-properties
+      - python3-dev
+      - python3-pip
       - rsync
+      - ruby
+      - ruby-dev
       - screen
+      - scrot
       - ssh
       - suckless-tools
       - sudo
@@ -28,21 +45,15 @@ workstation-packages:
       - thunderbird
       - tmux
       - vim
+      - vlc
       - w3m
+      - wget
+      - wicd-curses
       - xclip
-      - xfce4-terminal
+      - xclip
+      - xdg-utils
       - xfonts-terminus
     - refresh: True
-
-workstation-arc-theme:
-  pkgrepo.managed:
-    - name: deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /
-    - file: /etc/apt/sources.list.d/arc-theme.list
-    - key_url: http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/Release.key
-  pkg.latest:
-    - name: arc-theme
-    - require:
-      - pkgrepo: workstation-arc-theme
 
 workstation-packages-purged:
   pkg.purged:

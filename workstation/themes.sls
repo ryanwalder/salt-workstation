@@ -1,21 +1,11 @@
-theme-mediterranean:
+workstation-themes-papirus:
   pkgrepo.managed:
-    - humanname: Noobslab Themes
-    - name: deb http://ppa.launchpad.net/noobslab/themes/ubuntu trusty main
-    - file: /etc/apt/sources.list.d/noobslab-themes-trusty.list
-    - keyid: F59EAE4D
-    - keyserver: keyserver.ubuntu.com
+    - ppa:papirus/papirus
   pkg.latest:
-    - name: mediterranean-theme
+    - name: papirus-icon-theme
     - refresh: True
 
-icons-faenza:
-  pkgrepo.managed:
-    - humanname: Noobslab Themes
-    - name: deb http://ppa.launchpad.net/noobslab/icons/ubuntu trusty main
-    - file: /etc/apt/sources.list.d/noobslab-icons-trusty.list
-    - keyid: F59EAE4D
-    - keyserver: keyserver.ubuntu.com
+workstations-theme-arc:
   pkg.latest:
-    - name: faenza-icon-theme
+    - name: arc-theme
     - refresh: True
