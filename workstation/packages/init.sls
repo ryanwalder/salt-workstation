@@ -1,58 +1,103 @@
 include:
+  - workstation.packages.neovim
   - workstation.packages.vagrant
+
+workstation-snaps:
+  snap.installed:
+    - names:
+      - spotify
+      - slack
 
 workstation-packages:
   pkg.latest:
     - pkgs:
       - alsa-utils
       - autorandr
+      - bash-completion
       - bridge-utils
       - build-essential
       - chromium-browser
+      - compton
       - curl
+      - dunst
       - feh
+      - ffmpeg
       - firefox
-      - flashplugin-installer
+      - fonts-noto
+      - fonts-noto-mono
+      - fonts-powerline
+      - fonts-powerline
+      - fonts-roboto
+      - fonts-ubuntu
       - gcc
+      - gconf2
+      - gimp
       - gnome-keyring
       - gnome-terminal
       - gthumb
+      - gvfs
+      - gvfs-backends
+      - gvfs-common
+      - gvfs-daemons
+      - gzip
       - haveged
       - htop
+      - imagemagick
+      - ipcalc
       - jq
+      - libnotify-bin
       - libreoffice
       - lxc
       - lxd
+      - make
       - mtr
       - net-tools
       - nmap
+      - openvpn
+      - pavucontrol
       - pinta
       - playerctl
+      - pwgen
       - python
       - python-dev
       - python-pip
       - python3-dev
       - python3-pip
+      - qemu-utils
+      - rofi
       - rsync
       - ruby
+      - ruby-bundler
       - ruby-dev
       - screen
       - scrot
+      - smbclient
       - ssh
+      - sshpass
+      - strace
       - suckless-tools
       - sudo
       - thunar
       - thunderbird
       - tmux
-      - vim
+      - traceroute
+      - tree
+      - unzip
       - vlc
       - w3m
       - wget
+      - whois
+      - wicd-cli
       - wicd-curses
-      - xclip
+      - wicd-gtk
+      - wireshark
+      - xautolock
       - xclip
       - xdg-utils
       - xfonts-terminus
+      - xinput
+      - youtube-dl
+      - zip
     - refresh: True
 
 workstation-packages-purged:
