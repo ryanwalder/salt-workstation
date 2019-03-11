@@ -17,7 +17,6 @@ workstation-packages:
       - bridge-utils
       - build-essential
       - chromium-browser
-      - compton
       - curl
       - dunst
       - feh

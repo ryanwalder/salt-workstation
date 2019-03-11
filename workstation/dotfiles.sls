@@ -32,7 +32,6 @@ dotfiles:
   ".config/dotfiles/bin/wallpaper": "bin/wallpaper",
   ".config/dotfiles/bin/monitors": "bin/monitors",
   ".config/dotfiles/dunst/dunstrc": ".config/dunst/dunstrc",
-  ".config/dotfiles/compton/compton.conf": ".config/compton.conf",
 }.items() %}
 
 dotfiles-symlink-{{ target|replace('/', '-') }}:
