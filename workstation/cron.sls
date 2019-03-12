@@ -5,6 +5,6 @@
 
 cron-wallpaper:
   cron.present:
-    - name: '~/bin/wallpaper'
+    - name: 'DISPLAY=:0 ~/bin/wallpaper'
     - user: {{ user }}
     - minute: '*/10'
