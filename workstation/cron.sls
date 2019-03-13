@@ -8,3 +8,4 @@ cron-wallpaper:
     - name: 'DISPLAY=:0 ~/bin/wallpaper'
     - user: {{ user }}
     - minute: '*/10'
+    - identifier: WALLPAPER
