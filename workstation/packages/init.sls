@@ -22,6 +22,7 @@ workstation-packages:
       - feh
       - ffmpeg
       - firefox
+      - flameshot
       - fonts-noto
       - fonts-noto-mono
       - fonts-powerline
