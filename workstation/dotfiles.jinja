@@ -1,0 +1,86 @@
+{%- set dotfiles_dir = ".config/dotfiles" %}
+{% set dotfiles = {
+  "home": {
+    "path": "",
+    "files": {
+      ".bashrc": {
+        "source": dotfiles_dir + "/bash/bashrc",
+        "mode": 644,
+        "user": user,
+        "group": user,
+      },
+      ".inputrc": {
+        "source": dotfiles_dir + "/bash/inputrc",
+      },
+      ".Xresources": {
+        "source": dotfiles_dir + "/bash/Xresources",
+      },
+      ".gitconfig": {
+        "source": dotfiles_dir + "/git/gitconfig",
+      },
+    },
+  },
+  "bin": {
+    "files": {
+      "wallpaper": {
+        "source": dotfiles_dir + "/bin/wallpaper",
+      },
+      "monitors": {
+        "source": dotfiles_dir + "/bin/monitors",
+      },
+      "monitors_rofi": {
+        "source": dotfiles_dir + "/bin/monitors_rofi",
+      },
+      "i3-get-window-info": {
+        "source": dotfiles_dir + "/bin/i3-get-window-info",
+      },
+    },
+  },
+  ".config": {
+    "files": {
+      ".gtkrc-2.0": {
+        "source": dotfiles_dir + "/gtk/gtk2",
+      },
+    },
+  },
+  ".config/fontconfig": {
+    "files": {
+      "fonts.conf": {
+        "source": dotfiles_dir + "/fonts/fonts.conf",
+      },
+    },
+  },
+  ".config/i3": {
+    "files": {
+      "config": {
+        "source": dotfiles_dir + "/i3/config",
+      },
+    },
+  },
+  ".config/dunst": {
+    "files": {
+      "dunstrc": {
+        "source": dotfiles_dir + "/dunst/dunstrc",
+      },
+    },
+  },
+  ".config/gtk-3.0": {
+    "files": {
+      "settings.ini": {
+        "source": dotfiles_dir + "/gtk/gtk3",
+      },
+    },
+  },
+  ".gnupg": {
+    "path": ".gnupg",
+    "mode": 700,
+    "files": {
+      "gpg.conf": {
+        "source": dotfiles_dir + "/gnupg/gpg.conf",
+      },
+      "gpg-agent.conf": {
+        "source": dotfiles_dir + "/gnupg/gpg-agent.conf",
+      },
+    },
+  },
+} %}
