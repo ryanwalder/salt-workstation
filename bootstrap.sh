@@ -24,7 +24,7 @@ apt-get install -y curl
 
 mkdir -p /srv/salt /srv/pillar
 
-#curl -L https://bootstrap.saltstack.com | sh
+curl -L https://bootstrap.saltstack.com | sh
 
 cp -r $(pwd)/workstation /srv/salt
 cp $(pwd)/top.sls /srv/salt/top.sls
@@ -32,6 +32,7 @@ cp $(pwd)/top.sls /srv/pillar/top.sls
 cp $(pwd)/pillar.sls /srv/pillar/workstation.sls
 echo "$salt_config" > /etc/salt/minion
 
-#systemctl restart salt-minion
+systemctl stop salt-minion
+systemctl disable salt-minion
 
-salt-call state.highstate --log-level debug --local
+salt-call --log-level debug --local state.apply $@
