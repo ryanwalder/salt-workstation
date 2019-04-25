@@ -1,4 +1,9 @@
 {% set workstation = salt['pillar.get']('workstation', {
     'user': 'ryan',
     'home': '/home/ryan',
+    'laptop-mode': {
+      'config': {
+        'enable': True,
+      }
+    }
 }, merge=True) %}
